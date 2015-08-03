@@ -915,7 +915,7 @@ class LibvirtCI():
             return onlys
 
         self.nos = set(['io-github-autotest-qemu'])
-        self.onlys = None
+        self.onlys = set()
 
         if self.args.only:
             self.onlys = set(self.args.only.split(','))
@@ -1378,11 +1378,6 @@ class LibvirtCI():
                     short_name = test.split('.', 2)[2]
                     print short_name
                 exit(0)
-
-            if not tests:
-                report.update("", "no_test.no_test", "", "", "", 0)
-                print "No test to run!"
-                return
 
             self.prepare_env()
             for state in self.states:
